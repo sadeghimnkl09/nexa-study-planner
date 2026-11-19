@@ -1,0 +1,199 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#5b6cf0"><meta name="description" content="برنامه‌ریز مطالعه: کتاب‌های هر درس و برنامه روزانه">
+<link rel="manifest" href="manifest.webmanifest"><link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<title>نِکسا | برنامه‌ریز مطالعه</title>
+<style>
+:root{--bg:#f5f6fb;--card:#fff;--ink:#1a2238;--mut:#7a86a0;--line:#e8ebf4;--pri:#5b6cf0;--ok:#1fa67a;--bad:#e5566a;--sh:0 8px 30px #2a3a6a0f}
+[data-theme=dark]{--bg:#0e1424;--card:#161e33;--ink:#eef1ff;--mut:#98a4c0;--line:#263150;--pri:#8b99ff;--ok:#3ccb9c;--bad:#ff7f8e;--sh:0 8px 30px #0004}
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.7 Vazirmatn,system-ui,Tahoma,sans-serif}
+button,input{font:inherit;color:inherit}button{cursor:pointer;border:0;background:none}
+.wrap{max-width:680px;margin:auto;padding:max(16px,env(safe-area-inset-top)) 16px 120px}
+header{display:flex;align-items:center;justify-content:space-between;margin:4px 0 20px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:19px}
+.logo{width:40px;height:40px;border-radius:13px;background:linear-gradient(140deg,#5b6cf0,#9774f0);color:#fff;display:grid;place-items:center;font-size:20px}
+.ib{width:40px;height:40px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-size:17px}
+header .ib+.ib{margin-inline-end:8px}
+h2{font-size:18px;margin:0}small,.mut{color:var(--mut);font-size:12.5px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:20px;padding:16px;box-shadow:var(--sh);margin-bottom:14px}
+.hero{background:linear-gradient(125deg,#3e56d6,#7b5be0);color:#fff;border:0}
+.hero small{color:#dfe4ff}.hero .big{font-size:30px;font-weight:800;line-height:1.3;margin:4px 0 10px}
+.bar{height:8px;border-radius:9px;background:color-mix(in srgb,var(--mut) 20%,transparent);overflow:hidden}
+.bar i{display:block;height:100%;border-radius:9px;background:var(--c,var(--pri));transition:width .3s}
+.hero .bar{background:#ffffff33}.hero .bar i{background:#fff}
+.sec{display:flex;justify-content:space-between;align-items:center;margin:22px 2px 12px}
+.btn{padding:10px 16px;border-radius:12px;background:var(--card);border:1px solid var(--line);font-weight:600}
+.btn.p{background:var(--pri);border-color:var(--pri);color:#fff}.btn.d{color:var(--bad)}.btn.w{width:100%}
+.tiny{padding:5px 11px;border-radius:9px;background:var(--bg);border:1px solid var(--line);font-size:12px}
+.item{border-inline-start:4px solid var(--c)}
+.ih{display:flex;justify-content:space-between;align-items:flex-start;gap:10px}
+.ih b{display:block;font-size:15px}
+.chk{width:38px;height:38px;border-radius:50%;border:2px solid var(--line);color:transparent;font-size:18px;flex:none}
+.chk.on{background:var(--ok);border-color:var(--ok);color:#fff}
+.rng{margin:8px 0 10px;font-weight:600}.rng span{color:var(--mut);font-weight:400;font-size:13px}
+.ft{display:flex;justify-content:space-between;align-items:center;margin-top:10px}
+.crs{border-inline-start:4px solid var(--c)}
+.ch{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px}
+.ch h3{margin:0;font-size:16px}
+.book{display:block;width:100%;text-align:start;padding:12px;border:1px solid var(--line);border-radius:14px;margin-top:9px;background:var(--bg)}
+.book b{font-size:14px}
+.book .r{display:flex;justify-content:space-between;gap:8px}
+.chip{display:inline-block;padding:2px 10px;border-radius:20px;font-size:11.5px;background:color-mix(in srgb,var(--c) 14%,transparent);color:var(--ink)}
+.chip.bad{background:color-mix(in srgb,var(--bad) 18%,transparent);color:var(--bad)}.chip.ok{background:color-mix(in srgb,var(--ok) 18%,transparent);color:var(--ok)}
+.add{width:100%;margin-top:11px;padding:10px;border:1.5px dashed var(--line);border-radius:14px;color:var(--mut)}
+.days{display:flex;gap:6px;justify-content:space-between}
+.days button{flex:1;padding:8px 0;border-radius:11px;border:1px solid var(--line);background:var(--bg);color:var(--mut);font-weight:600}
+.days button.on{background:var(--pri);border-color:var(--pri);color:#fff}
+.day.today{border-color:var(--pri)}
+.day h4{margin:0 0 6px;display:flex;justify-content:space-between;font-size:14px}
+.pl{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid var(--line);font-size:13.5px}
+.pl:first-of-type{border-top:0}.dot{width:10px;height:10px;border-radius:50%;background:var(--c);flex:none}.pl span:last-child{margin-inline-start:auto;color:var(--mut);white-space:nowrap}
+.empty{text-align:center;color:var(--mut);padding:26px 10px}
+nav{position:fixed;bottom:max(14px,env(safe-area-inset-bottom));left:50%;transform:translateX(-50%);display:flex;gap:4px;padding:6px;background:color-mix(in srgb,var(--card) 88%,transparent);backdrop-filter:blur(14px);border:1px solid var(--line);border-radius:20px;box-shadow:0 10px 40px #1a22382e;z-index:5}
+nav button{padding:10px 22px;border-radius:15px;color:var(--mut);font-weight:700}
+nav button.on{background:var(--pri);color:#fff}
+.back{position:fixed;inset:0;background:#0a122099;display:none;align-items:flex-end;justify-content:center;z-index:10}.back.show{display:flex}
+.sheet{background:var(--card);width:min(560px,100%);max-height:92vh;overflow:auto;border-radius:24px 24px 0 0;padding:20px 18px max(20px,env(safe-area-inset-bottom))}
+@media(min-width:600px){.back{align-items:center}.sheet{border-radius:24px}}
+.sheet h3{margin:0 0 14px}.fl{display:grid;grid-template-columns:1fr 1fr;gap:11px}.fl .f{grid-column:span 1}.fl .full{grid-column:1/-1}
+.f label{display:block;font-size:12px;color:var(--mut);margin-bottom:4px}
+.f input{width:100%;padding:11px;border-radius:12px;border:1px solid var(--line);background:var(--bg);outline:none}.f input:focus{border-color:var(--pri)}
+.chips{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+.sw{display:flex;gap:10px}.sw button{width:34px;height:34px;border-radius:50%;background:var(--c);border:3px solid var(--card);box-shadow:0 0 0 2px transparent}.sw button.on{box-shadow:0 0 0 2px var(--c)}
+.foot{display:flex;gap:8px;margin-top:18px}.foot .btn.p{flex:1}
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%);background:#17233d;color:#fff;padding:9px 16px;border-radius:12px;opacity:0;pointer-events:none;transition:.2s;z-index:20;font-size:13px}.toast.show{opacity:1}
+</style></head>
+<body><div class="wrap">
+<header><div class="brand"><div class="logo">✦</div>نِکسا</div><div><button class="ib" data-a="theme" aria-label="تغییر پوسته">◐</button><button class="ib" data-a="tools" aria-label="ابزارها">⋯</button></div></header>
+<main id="view"></main></div>
+<nav><button data-a="tab" data-t="today">امروز</button><button data-a="tab" data-t="courses">درس‌ها</button><button data-a="tab" data-t="plan">برنامه</button></nav>
+<div class="back" id="back"><div class="sheet" id="sheet"></div></div><div class="toast" id="toast"></div>
+<script>
+const KEY='nexa.study.v2',COLORS=['#5b6cf0','#1fa67a','#e0a030','#e0607e','#9168e0','#2f9bbd'];
+const $=s=>document.querySelector(s);
+const num=v=>{const n=parseFloat(String(v).replace(/[۰-۹]/g,c=>c.charCodeAt(0)-1776).replace(/[٠-٩]/g,c=>c.charCodeAt(0)-1632).replace(/[٫,]/g,'.'));return isNaN(n)?0:n};
+const fa=n=>Number(n||0).toLocaleString('fa-IR');
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const uid=()=>Date.now().toString(36)+Math.random().toString(36).slice(2,7);
+const iso=d=>new Date(d.getTime()-d.getTimezoneOffset()*6e4).toISOString().slice(0,10);
+const today=()=>iso(new Date());
+const addDays=(s,n)=>{const d=new Date(s+'T12:00:00');d.setDate(d.getDate()+n);return iso(d)};
+const fmt=(s,o={day:'numeric',month:'long'})=>new Intl.DateTimeFormat('fa-IR-u-ca-persian',o).format(new Date(s+'T12:00:00'));
+let S;try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+S=S||{};S.courses=S.courses||[];S.studyDays=S.studyDays||[0,1,2,3,4,5,6];
+S.courses.forEach(c=>{c.color=c.color||COLORS[0];c.books=c.books||[];c.books.forEach(b=>b.log=b.log||{})});
+const save=()=>localStorage.setItem(KEY,JSON.stringify(S));
+let tab='today',installPrompt=null;
+const toast=t=>{const e=$('#toast');e.textContent=t;e.classList.add('show');setTimeout(()=>e.classList.remove('show'),2000)};
+const isStudy=d=>S.studyDays.includes(new Date(d+'T12:00:00').getDay());
+function studyCount(a,b){let n=0;for(let d=a,i=0;d<=b&&i<800;d=addDays(d,1),i++)if(isStudy(d))n++;return n}
+function dateForStudy(n){let d=today();for(let i=0;i<800;i++,d=addDays(d,1))if(isStudy(d)&&--n<=0)return d;return d}
+const find=id=>{for(const c of S.courses){const b=c.books.find(x=>x.id===id);if(b)return{c,b}}};
+const pct=(a,b)=>b?Math.min(100,Math.round(a/b*100)):0;
+function info(b){
+  const t=today(),pages=+b.pages,done=+b.done,read=b.log[t]||0,startDone=Math.max(0,done-read),remStart=pages-startDone,rem=pages-done;
+  const o={read,startDone,remStart,rem,complete:rem<=0};
+  if(!b.deadline)return{...o,noPlan:true};
+  const overdue=b.deadline<t&&rem>0,left=overdue?1:studyCount(t,b.deadline);
+  const target=overdue?remStart:isStudy(t)||left===0?Math.ceil(remStart/Math.max(left,1)):0;
+  return{...o,overdue,left,target,rate:Math.ceil(rem/Math.max(left,1))};
+}
+function weekPlan(b){
+  const i=info(b),t=today(),out=[];if(i.noPlan||i.remStart<=0)return out;
+  let rem=i.remStart,start=i.startDone;
+  for(let k=0;k<7&&rem>0;k++){const d=addDays(t,k);if(!i.overdue&&d>b.deadline)break;if(!i.overdue&&!isStudy(d))continue;if(i.overdue&&k>0)break;
+    const left=i.overdue?1:Math.max(1,studyCount(d,b.deadline)),p=Math.min(rem,Math.ceil(rem/left));
+    out.push({d,from:start+1,to:start+p,p});start+=p;rem-=p}
+  return out;
+}
+function setDone(b,n){n=Math.max(0,Math.min(+b.pages,n));const t=today();b.log[t]=Math.max(0,(b.log[t]||0)+n-b.done);b.done=n;save();render()}
+/* views */
+function today_(){
+  const t=today(),items=[],none=[];
+  S.courses.forEach(c=>c.books.forEach(b=>{if(+b.done>=+b.pages&&!b.log[t])return;const i=info(b);if(i.noPlan)none.push({c,b});else if(i.target>0||i.read>0)items.push({c,b,i})}));
+  const T=items.reduce((a,x)=>a+x.i.target,0),R=items.reduce((a,x)=>a+Math.min(x.i.read,x.i.target),0);
+  const hero=`<div class="card hero"><small>${fmt(t,{weekday:'long',day:'numeric',month:'long'})}</small><div class="big">${T?(R>=T?'برنامه امروز کامل شد ✓':fa(R)+' از '+fa(T)+' صفحه'):(S.courses.length?'امروز برنامه‌ای نداری':'خوش آمدی')}</div><div class="bar"><i style="width:${pct(R,T)}%"></i></div></div>`;
+  if(!S.courses.length)return hero+`<div class="card empty">با سه قدم شروع کن:<br>۱) یک درس بساز ۲) کتاب‌هایش را اضافه کن ۳) برای هر کتاب موعد تعیین کن<br><br><button class="btn p" data-a="add-course">ساخت اولین درس</button></div>`;
+  return hero+(items.length?items.map(({c,b,i})=>{const done=i.read>=i.target&&i.target>0,end=Math.min(i.startDone+i.target,+b.pages);
+    return`<div class="card item" style="--c:${c.color}"><div class="ih"><div><b>${esc(b.name)}</b><small>${esc(c.name)}${i.overdue?' · <span style="color:var(--bad)">از موعد گذشته</span>':''}</small></div><button class="chk ${done?'on':''}" data-a="check" data-b="${b.id}" aria-label="انجام شد">✓</button></div>
+    <div class="rng">صفحه ${fa(i.startDone+1)} تا ${fa(end)} <span>(${fa(i.target)} صفحه)</span></div><div class="bar" style="--c:${c.color}"><i style="width:${pct(i.read,i.target)}%"></i></div>
+    <div class="ft"><small>خوانده‌شده امروز: ${fa(i.read)}</small><button class="tiny" data-a="log" data-b="${b.id}">تا کدام صفحه رسیدی؟</button></div></div>`}).join(''):`<div class="card empty">${none.length?'برای کتاب‌ها موعد تعیین کن تا برنامه روزانه ساخته شود.':'امروز روز استراحت است یا همه کتاب‌ها تمام شده‌اند.'}</div>`)
+  +(none.length?`<div class="sec"><h2>بدون برنامه</h2></div>`+none.map(({c,b})=>`<button class="book" style="--c:${c.color}" data-a="edit-book" data-b="${b.id}"><div class="r"><b>${esc(b.name)}</b><span class="chip">تعیین موعد ←</span></div></button>`).join(''):'');
+}
+function courses_(){
+  return`<div class="sec" style="margin-top:0"><h2>درس‌ها و کتاب‌ها</h2><button class="btn p" data-a="add-course">＋ درس</button></div>`+
+  (S.courses.map(c=>{const P=c.books.reduce((a,b)=>a+ +b.pages,0),D=c.books.reduce((a,b)=>a+ +b.done,0);
+    return`<section class="card crs" style="--c:${c.color}"><div class="ch"><div><h3>${esc(c.name)}</h3><small>${fa(c.books.length)} کتاب · ${fa(pct(D,P))}٪ پیشرفت</small></div><button class="tiny" data-a="edit-course" data-c="${c.id}">ویرایش</button></div>
+    ${P?`<div class="bar"><i style="width:${pct(D,P)}%"></i></div>`:''}
+    ${c.books.map(b=>{const i=info(b);const chip=i.complete?'<span class="chip ok">تمام شد ✓</span>':i.noPlan?'<span class="chip">بدون موعد</span>':`<span class="chip ${i.overdue?'bad':''}">${i.overdue?'از موعد گذشته':'تا '+fmt(b.deadline)+' · روزانه '+fa(i.rate)+' صفحه'}</span>`;
+      return`<button class="book" data-a="edit-book" data-b="${b.id}"><div class="r"><b>${esc(b.name)}</b><small>${fa(b.done)}/${fa(b.pages)}</small></div>${b.author?`<small>${esc(b.author)}</small>`:''}<div class="bar" style="margin:8px 0"><i style="width:${pct(b.done,b.pages)}%"></i></div>${chip}</button>`}).join('')}
+    <button class="add" data-a="add-book" data-c="${c.id}">＋ افزودن کتاب</button></section>`}).join('')||'<div class="card empty">هنوز درسی نساخته‌ای.</div>');
+}
+function plan_(){
+  const names=['ش','ی','د','س','چ','پ','ج'],js=[6,0,1,2,3,4,5],t=today(),map={};
+  S.courses.forEach(c=>c.books.forEach(b=>weekPlan(b).forEach(w=>(map[w.d]=map[w.d]||[]).push({c,b,w}))));
+  let h=`<div class="sec" style="margin-top:0"><h2>برنامه هفته</h2></div><div class="card"><small>روزهای مطالعه</small><div class="days" style="margin-top:8px">${js.map((j,i)=>`<button class="${S.studyDays.includes(j)?'on':''}" data-a="day" data-j="${j}">${names[i]}</button>`).join('')}</div></div>`;
+  for(let k=0;k<7;k++){const d=addDays(t,k),it=map[d]||[];
+    h+=`<div class="card day ${k?'':'today'}"><h4><span>${fmt(d,{weekday:'long'})}${k?'':' (امروز)'}</span><small>${fmt(d)}</small></h4>${it.length?it.map(({c,b,w})=>`<div class="pl" style="--c:${c.color}"><span class="dot"></span><span>${esc(b.name)}</span><span>ص ${fa(w.from)}–${fa(w.to)} · ${fa(w.p)}</span></div>`).join(''):'<small>'+(isStudy(d)?'کاری برنامه‌ریزی نشده':'روز استراحت')+'</small>'}</div>`}
+  return h;
+}
+function render(){const v={today:today_,courses:courses_,plan:plan_}[tab]();$('#view').innerHTML=v;document.querySelectorAll('nav button').forEach(b=>b.classList.toggle('on',b.dataset.t===tab))}
+/* sheet */
+function sheet(title,body,{save:sv,onSave,del,onDel}={}){
+  $('#sheet').innerHTML=`<h3>${title}</h3>${body}<div class="foot">${sv?`<button class="btn p" id="sOk">${sv}</button>`:''}<button class="btn" id="sNo">${sv?'انصراف':'بستن'}</button>${del?`<button class="btn d" id="sDel">${del}</button>`:''}</div>`;
+  $('#back').classList.add('show');$('#sNo').onclick=close;if(sv)$('#sOk').onclick=onSave;if(del)$('#sDel').onclick=onDel;
+}
+const close=()=>$('#back').classList.remove('show');
+$('#back').addEventListener('click',e=>{if(e.target.id==='back')close()});
+const fld=(l,id,v='',ph='',cls='')=>`<div class="f ${cls}"><label>${l}</label><input id="${id}" value="${esc(v)}" placeholder="${ph}" ${cls==='n'?'inputmode="numeric"':''}></div>`;
+const ask=(msg,fn)=>sheet('مطمئنی؟',`<p>${msg}</p>`,{save:'بله، حذف شود',onSave:()=>{fn();close()}});
+function courseForm(c){
+  let col=c?.color||COLORS[0];
+  sheet(c?'ویرایش درس':'درس جدید',`<div class="fl">${fld('نام درس','cn',c?.name||'','مثلاً ریاضی مهندسی','full')}<div class="f full"><label>رنگ</label><div class="sw">${COLORS.map(x=>`<button style="--c:${x}" data-col="${x}" class="${x===col?'on':''}"></button>`).join('')}</div></div></div>`,
+  {save:'ذخیره',del:c?'حذف درس':'',onDel:()=>ask('این درس و همه کتاب‌هایش حذف شود؟',()=>{S.courses=S.courses.filter(x=>x!==c);save();render()}),
+   onSave:()=>{const name=$('#cn').value.trim();if(!name)return toast('نام درس را وارد کن');if(c){c.name=name;c.color=col}else S.courses.push({id:uid(),name,color:col,books:[]});save();close();render()}});
+  document.querySelectorAll('[data-col]').forEach(b=>b.onclick=()=>{col=b.dataset.col;document.querySelectorAll('[data-col]').forEach(x=>x.classList.toggle('on',x===b))});
+}
+function bookForm(c,b){
+  sheet(b?'ویرایش کتاب':'کتاب جدید به «'+esc(c.name)+'»',`<div class="fl">${fld('نام کتاب / منبع','bn',b?.name||'','','full')}${fld('نویسنده (اختیاری)','ba',b?.author||'','','full')}${fld('کل صفحات','bp',b?.pages||'','','n')}${fld('صفحه‌ای که تا حالا رسیدی','bd',b?.done||0,'','n')}
+  <div class="f full"><label>می‌خوای تا کی تمومش کنی؟</label><input id="bdl" type="date" value="${b?.deadline||''}"><div class="chips">${[[7,'یک هفته'],[14,'دو هفته'],[30,'یک ماه'],[60,'دو ماه'],[90,'سه ماه']].map(([n,l])=>`<button class="tiny" data-n="${n}">${l}</button>`).join('')}</div></div>
+  ${fld('یا روزانه چند صفحه؟','bpd','','مثلاً ۱۵','n')}<div class="f" style="align-self:end"><small id="bpv"></small></div></div>`,
+  {save:'ذخیره',del:b?'حذف کتاب':'',onDel:()=>ask('این کتاب حذف شود؟',()=>{c.books=c.books.filter(x=>x!==b);save();render()}),
+   onSave:()=>{const name=$('#bn').value.trim(),pages=Math.round(num($('#bp').value)),done=Math.round(num($('#bd').value));
+    if(!name||pages<1||done<0||done>pages)return toast('نام و تعداد صفحات را درست وارد کن');
+    const dl=$('#bdl').value,v={name,author:$('#ba').value.trim(),pages,done,deadline:dl};
+    if(b){if(done!==b.done)b.log[today()]=Math.max(0,(b.log[today()]||0)+done-b.done);Object.assign(b,v)}else c.books.push({id:uid(),log:{},...v});
+    save();close();render()}});
+  const rem=()=>Math.max(1,num($('#bp').value)-num($('#bd').value));
+  const show=()=>{const d=$('#bdl').value;$('#bpv').textContent=d?'پایان: '+fmt(d)+' · روزانه ≈ '+fa(Math.ceil(rem()/Math.max(1,studyCount(today(),d))))+' صفحه':''};
+  $('#bdl').oninput=()=>{const d=$('#bdl').value;if(d)$('#bpd').value=Math.ceil(rem()/Math.max(1,studyCount(today(),d)));show()};
+  $('#bpd').oninput=()=>{const r=num($('#bpd').value);if(r>=1){$('#bdl').value=dateForStudy(Math.ceil(rem()/r));show()}};
+  document.querySelectorAll('[data-n]').forEach(x=>x.onclick=()=>{$('#bdl').value=addDays(today(),+x.dataset.n);$('#bdl').oninput()});show();
+}
+function logForm(b){sheet('تا کدام صفحه خواندی؟',`<small>${esc(b.name)} · از ${fa(b.pages)} صفحه</small><div class="fl" style="margin-top:10px">${fld('شماره صفحه','ld',b.done,'','n full')}</div>`,{save:'ثبت',onSave:()=>{setDone(b,Math.round(num($('#ld').value)));close()}})}
+/* actions */
+document.addEventListener('click',e=>{const el=e.target.closest('[data-a]');if(!el)return;const a=el.dataset.a,r=el.dataset.b&&find(el.dataset.b),c=S.courses.find(x=>x.id===el.dataset.c);
+  if(a==='tab'){tab=el.dataset.t;render();scrollTo(0,0)}
+  if(a==='add-course')courseForm();if(a==='edit-course')courseForm(c);if(a==='add-book')bookForm(c);if(a==='edit-book')bookForm(r.c,r.b);if(a==='log')logForm(r.b);
+  if(a==='check'){const i=info(r.b);setDone(r.b,i.read>=i.target?i.startDone:i.startDone+i.target)}
+  if(a==='day'){const j=+el.dataset.j,s=S.studyDays;if(s.includes(j)){if(s.length>1)S.studyDays=s.filter(x=>x!==j)}else s.push(j);save();render()}
+  if(a==='theme'){S.theme=document.documentElement.dataset.theme==='dark'?'light':'dark';theme();save()}
+  if(a==='tools')tools();
+});
+function theme(){document.documentElement.dataset.theme=S.theme||(matchMedia('(prefers-color-scheme:dark)').matches?'dark':'light')}
+function tools(){
+  sheet('ابزارها',`<p class="mut">اطلاعات فقط روی همین دستگاه ذخیره می‌شود. برای انتقال یا نگهداری، پشتیبان بگیر.</p><div style="display:grid;gap:8px"><button class="btn w" id="ex">دریافت پشتیبان (JSON)</button><label class="btn w" style="text-align:center">بازیابی پشتیبان<input type="file" id="im" accept="application/json" hidden></label>${installPrompt?'<button class="btn w" id="ins">نصب اپ</button>':''}<button class="btn w d" id="rs">حذف همه اطلاعات</button></div>`);
+  $('#ex').onclick=()=>{const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([JSON.stringify(S,null,2)],{type:'application/json'}));a.download='nexa-backup-'+today()+'.json';a.click()};
+  $('#im').onchange=e=>{const f=e.target.files[0];if(!f)return;const r=new FileReader();r.onload=()=>{try{const d=JSON.parse(r.result);if(!Array.isArray(d.courses))throw 0;d.courses.forEach(c=>{c.books=c.books||[];c.books.forEach(b=>b.log=b.log||{})});d.studyDays=d.studyDays||[0,1,2,3,4,5,6];S=d;save();theme();close();render();toast('بازیابی شد')}catch(_){toast('فایل معتبر نیست')}};r.readAsText(f)};
+  $('#rs').onclick=()=>ask('همه درس‌ها و کتاب‌ها پاک شود؟',()=>{localStorage.removeItem(KEY);location.reload()});
+  if(installPrompt)$('#ins').onclick=async()=>{installPrompt.prompt();await installPrompt.userChoice;installPrompt=null;close()};
+}
+addEventListener('beforeinstallprompt',e=>{e.preventDefault();installPrompt=e});
+theme();render();
+if('serviceWorker'in navigator&&location.protocol!=='file:')addEventListener('load',()=>navigator.serviceWorker.register('./sw.js').catch(()=>{}));
+</script></body></html>
